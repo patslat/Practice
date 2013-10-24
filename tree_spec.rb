@@ -7,6 +7,7 @@ describe 'TreeNode' do
   describe 'breadth first search' do
     before :each do
       10.times { |n| root.add_child(n) }
+      p root.inorder
     end
 
     it 'finds a 3' do
