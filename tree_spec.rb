@@ -2,22 +2,15 @@ require 'rspec'
 require './tree.rb'
 
 describe 'TreeNode' do
-
-
-  subject(:root) { TreeNode.new(5, nil) }
+  subject(:root) { TreeNode.new(5) }
 
   describe 'breadth first search' do
-
-    it 'finds a 3' do
-      subject.bfs(3).value.should == 3
+    before :each do
+      10.times { |n| root.add_child(n) }
     end
 
-  end
-
-  describe 'depth first search' do
-
     it 'finds a 3' do
-      subject.dfs(3).value.should == 3
+      subject.bfs(3).key.should == 3
     end
   end
 

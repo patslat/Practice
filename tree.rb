@@ -1,30 +1,18 @@
 class TreeNode
-  attr_accessor :value, :children
-  def initialize(value, parent = nil, children = [])
-    @value, @parent, @children = value, parent, children
+  attr_reader :key, :left, :right
+  def initialize(value)
+    @value = value
   end
 
-  def add_child(value)
-    @children << TreeNode.new(value, self)
-  end
-
-  def bfs(value)
-    return self if @value == value
-    q = [self]
-    while current = q.shift
-      return current if current.value == value
-      q += current.children
+  def add_child(n)
+    if n < value && !left
+      @left = TreeNode.new(n)
+    elsif n < value
+      @left.add_child(n)
+    elsif n >= value && !right
+      @right = n
+    else
+      @right.add_child(n)
     end
-    nil
-  end
-
-  def dfs(value)
-    return self if @value == value
-    stack = [self]
-    while current = stack.pop
-      return current if current.value == value
-      stack += current.children
-    end
-    nil
   end
 end
