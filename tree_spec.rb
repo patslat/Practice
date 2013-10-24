@@ -2,7 +2,9 @@ require 'rspec'
 require './tree.rb'
 
 describe 'TreeNode' do
-  subject(:root) { TreeNode.new(5, nil, [TreeNode.new(6), TreeNode.new(4), TreeNode.new(3)]) }
+
+
+  subject(:root) { TreeNode.new(5, nil) }
 
   describe 'breadth first search' do
 
