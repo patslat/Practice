@@ -36,12 +36,3 @@ class LL
     first
   end
 end
-
-root = LL.new(1)
-
-(2..10).each { |n| root.add(n) }
-root.each do |n|
-  p n.key
-end
-
-root.reverse.each { |n| p n.key }
