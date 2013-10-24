@@ -4,7 +4,9 @@ require './tree.rb'
 describe 'TreeNode' do
   subject(:root) { TreeNode.new(5) }
   before :each do
+
     10.times { |n| next if n == 5; root.add_child(n) }
+    p root.postorder
   end
 
   describe '#bfs' do

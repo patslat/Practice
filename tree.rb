@@ -16,10 +16,22 @@ class TreeNode
     end
   end
 
+  def preorder
+    puts key
+    left.inorder if left
+    right.inorder if right
+  end
+
   def inorder
     left.inorder if left
     puts key
     right.inorder if right
+  end
+
+  def postorder
+    left.postorder if left
+    right.postorder if right
+    print key
   end
 
   def bfs(target)
@@ -38,4 +50,5 @@ class TreeNode
     return left_result if left_result && left_result.key == target
     return right.dfs(target) if right
   end
+
 end
