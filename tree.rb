@@ -31,4 +31,11 @@ class TreeNode
     end
     nil
   end
+
+  def dfs(target)
+    return self if key == target
+    left_result = left.dfs(target) if left
+    return left_result if left_result && left_result.key == target
+    return right.dfs(target) if right
+  end
 end
