@@ -10,6 +10,27 @@ describe LL do
     end
   end
 
+  context '1..3' do
+    before do
+      root.add(2)
+      root.add(3)
+    end
+
+    describe '#delete' do
+      root.delete(2)
+      expect(root.child.key).to be(3)
+    end
+
+    describe '#reverse' do
+      val = 3
+      root.reverse.each do |n|
+        expect(n.key).to be(val)
+        val -= 1
+      end
+    end
+
+  end
+
   context '1..10' do
     before do
       (2..10).each { |n| root.add(n) }
@@ -22,8 +43,6 @@ describe LL do
           expect(n.key).to be(item += 1)
         end
       end
-
     end
-
   end
 end
