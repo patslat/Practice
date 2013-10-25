@@ -4,7 +4,7 @@ require './ll.rb'
 describe LL do
   subject(:root) { LL.new(1) }
   describe '#add' do
-    it 'adds a child' do
+    it 'takes a key and adds a child' do
       root.add(2)
       expect(root.child.key).to be(2)
     end
@@ -17,15 +17,26 @@ describe LL do
     end
 
     describe '#delete' do
-      root.delete(2)
-      expect(root.child.key).to be(3)
+
+      it 'does not dereference the list if you delete the first item' do
+        root.delete(1)
+        expect(root.key).to be(2)
+      end
+      it 'removes the item without breaking the list' do
+        root.delete(2)
+        expect(root.child.key).to be(3)
+      end
     end
 
-    describe '#reverse' do
-      val = 3
-      root.reverse.each do |n|
-        expect(n.key).to be(val)
-        val -= 1
+    describe '#reverse!' do
+      it 'returns the head of the reversed ll' do
+        expected = 3
+        reversed = root.reverse!
+        expect(reversed.key).to eq(expected)
+        reversed.each do |n|
+          expect(n.key).to eq(expected)
+          expected -= 1
+        end
       end
     end
 
