@@ -16,9 +16,13 @@ describe LL do
     end
 
     describe '#each' do
-      it 'returns an enumerable object' do
-        expect(root.each.class).to be Enumerable
+      it 'iterates in order' do
+        item = 0
+        root.each do |n|
+          expect(n.key).to be(item += 1)
+        end
       end
+
     end
 
   end
