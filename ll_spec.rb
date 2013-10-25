@@ -96,14 +96,21 @@ describe LL do
 
     describe '#at' do
       it 'returns the key at given index' do
-        expect(root.at(0)).to be(1)
-        expect(root.at(5)).to be(6)
+        expect(root.at(0).key).to be(1)
+        expect(root.at(5).key).to be(6)
       end
     end
 
-    describe '[]' do
+    describe '#[]' do
       it 'returns the key at given index' do
-        expect(root[5]).to be(6)
+        expect(root[5].key).to be(6)
+      end
+    end
+
+    describe '#delete_at' do
+      it 'deletes the node at given index' do
+        root.delete_at(2)
+        expect(root.child.child.key).to be(4)
       end
     end
 

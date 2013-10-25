@@ -25,6 +25,11 @@ class LL
     end
   end
 
+  def delete_at(i)
+    target = self[i]
+    target.delete(target.key)
+  end
+
   def length
     length_counter(1)
   end
@@ -38,7 +43,7 @@ class LL
   end
 
   def [](n)
-    return key if n == 0
+    return self if n == 0
     return nil if child.nil?
     child[(n - 1)]
   end
