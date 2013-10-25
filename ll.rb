@@ -25,12 +25,45 @@ class LL
     end
   end
 
+  def length
+    length_counter(1)
+  end
+
+  def index(val)
+    index_helper(val, 0)
+  end
+
+  def at(n)
+    self[n]
+  end
+
+  def [](n)
+    return key if n == 0
+    return nil if child.nil?
+    child[(n - 1)]
+  end
+
   def each
     head = self
     while head
       yield head
       head = head.child
     end
+  end
+
+  def reverse
+    first = LL.new(self.key)
+    if self.child
+      second = self.child
+      current = LL.new(self.child.key)
+    end
+    while second
+      second = second.child
+      current.child = first
+      first = current
+      current = LL.new(second.key) if second
+    end
+    first
   end
 
   def reverse!
@@ -48,6 +81,17 @@ class LL
   end
 
   protected
+  def length_counter(n)
+    return n if child.nil?
+    child.length_counter(n + 1)
+  end
+
+  def index_helper(val, n)
+    return n if key == val
+    return nil if child.nil?
+    child.index_helper(val, n + 1)
+  end
+
   def child=(ll)
     @child = ll
   end

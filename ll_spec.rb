@@ -17,7 +17,6 @@ describe LL do
     end
 
     describe '#delete' do
-
       it 'does not dereference the list if you delete the first item' do
         root.delete(1)
         expect(root.key).to be(2)
@@ -28,13 +27,35 @@ describe LL do
       end
     end
 
+    describe '#reverse' do
+      it 'returns the head of a new reversed ll' do
+        reversed = root.reverse
+        expected = 3
+        expect(reversed.key).to eq(expected)
+        reversed.each do |n|
+          expect(n.key).to eq(expected)
+          expected -= 1
+        end
+      end
+
+      it 'is non destructive' do
+        root.reverse
+        expect(root.key).to be(1)
+        expected = 1
+        root.each do |node|
+          expect(node.key).to eq(expected)
+          expected += 1
+        end
+      end
+    end
+
     describe '#reverse!' do
       it 'returns the head of the reversed ll' do
         expected = 3
         reversed = root.reverse!
         expect(reversed.key).to eq(expected)
-        reversed.each do |n|
-          expect(n.key).to eq(expected)
+        reversed.each do |node|
+          expect(node.key).to eq(expected)
           expected -= 1
         end
       end
@@ -55,5 +76,36 @@ describe LL do
         end
       end
     end
+
+    describe '#length' do
+      it 'returns an int representing the length' do
+        expect(root.length).to be(10)
+      end
+
+      it 'should return a new length after deletion' do
+        root.delete(2)
+        expect(root.length).to be(9)
+      end
+    end
+
+    describe '#index' do
+      it 'should return the index of a value' do
+        expect(root.index(5)).to be(4)
+      end
+    end
+
+    describe '#at' do
+      it 'returns the key at given index' do
+        expect(root.at(0)).to be(1)
+        expect(root.at(5)).to be(6)
+      end
+    end
+
+    describe '[]' do
+      it 'returns the key at given index' do
+        expect(root[5]).to be(6)
+      end
+    end
+
   end
 end
